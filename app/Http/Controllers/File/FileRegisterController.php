@@ -15,7 +15,12 @@ class FileRegisterController extends Controller
      */
     public function index()
     {
-        return view ('file.index');
+        return view('file.index');
+    }
+
+    public function all()
+    {
+        return view('file.all');
     }
 
     /**
@@ -25,7 +30,7 @@ class FileRegisterController extends Controller
      */
     public function create()
     {
-        return view ('file.create');
+        return view('file.create');
     }
 
     /**
@@ -36,24 +41,21 @@ class FileRegisterController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'file_name' => 'required|string',
-            'received_from' =>'required|string',
-            'receive_date' =>'required|date',
+            'received_from' => 'required|string',
+            'receive_date' => 'required|date',
         ]);
 
-     File::create([
+        File::create([
             'file_name' => strtoupper($request->file_name),
-            'received_from'=> strtoupper($request->received_from),
-            'receive_date' =>date($request->receive_date),
-            'returned_to' => strtoupper($request->returned_to),
-            'return_date' =>date($request->return_date),
+            'received_from' => strtoupper($request->received_from),
+            'receive_date' => date($request->receive_date),
             'remarks' => $request->remarks
-
         ]);
-      
-         return redirect()->route('file.index')->with('status', 'Record added successfully !!');
+
+        return redirect()->route('file.index')->with('status', 'Record added successfully !!');
     }
 
     /**
@@ -64,7 +66,6 @@ class FileRegisterController extends Controller
      */
     public function show($id)
     {
-        
     }
 
     /**
@@ -75,7 +76,8 @@ class FileRegisterController extends Controller
      */
     public function edit($id)
     {
-        //
+        $file = File::find($id);
+        return view('file.edit', compact('file'));
     }
 
     /**
@@ -85,9 +87,16 @@ class FileRegisterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, File $file)
     {
-        //
+        $validated = $request->validate([
+            'returned_to' => 'required|string',
+            'return_date' => 'required|date',
+            'remarks' => 'required|string',
+        ]);
+
+        $file->update($validated);
+        return redirect()->route('file.index')->with('status', 'Record updated successfully !!');
     }
 
     /**

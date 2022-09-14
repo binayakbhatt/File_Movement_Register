@@ -8,4 +8,6 @@ use Illuminate\Support\Facades\Route;
 //     Route::resource('file', FileRegisterController::class)->only(['index', 'store', 'create', 'edit']);
 // });
 
-Route::resource('file', FileRegisterController::class)->only(['index', 'store', 'create', 'edit'])->middleware('auth');
+Route::resource('file', FileRegisterController::class)->only(['index', 'store', 'create', 'edit', 'update'])->middleware('auth');
+
+Route::get('/file-all', [FileRegisterController::class, 'all'])->name('file.all');

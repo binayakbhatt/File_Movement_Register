@@ -9,7 +9,7 @@ use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
 
-final class FileRegisterTable extends PowerGridComponent
+final class AllFileRegisterTable extends PowerGridComponent
 {
     use ActionButton;
 
@@ -51,7 +51,7 @@ final class FileRegisterTable extends PowerGridComponent
     public function datasource(): Builder
     {
         // Return files which are not returned
-        return File::query()->whereNull('return_date');
+        return File::query();
     }
 
     /*
@@ -128,6 +128,15 @@ final class FileRegisterTable extends PowerGridComponent
                 ->searchable()
                 ->sortable()
                 ->makeInputDatePicker(),
+
+            Column::make('RETURNED TO', 'returned_to')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('RETURN DATE', 'return_date_formatted', 'return_date')
+                ->searchable()
+                ->sortable()
+                ->makeInputDatePicker(),
             
             Column::make('DAYS IN OFFICE', 'days_in_office'),
             
@@ -153,20 +162,20 @@ final class FileRegisterTable extends PowerGridComponent
      */
 
  
-    public function actions(): array
-    {
-       return [
-           Button::make('edit', 'Dispatch')
-               ->class('bg-blue-700 font-bold cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-               ->route('file.edit', ['file' => 'id'])
-               ->target(''),
+    // public function actions(): array
+    // {
+    //    return [
+    //        Button::make('edit', 'Dispatch')
+    //            ->class('bg-blue-700 font-bold cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
+    //            ->route('file.edit', ['file' => 'id'])
+    //            ->target(''),
 
-        //    Button::make('destroy', 'Delete')
-        //        ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-        //        ->route('file.destroy', ['file' => 'id'])
-        //        ->method('delete')
-        ];
-    }
+    //        Button::make('destroy', 'Delete')
+    //            ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
+    //            ->route('file.destroy', ['file' => 'id'])
+    //            ->method('delete')
+    //     ];
+    // }
     
 
     /*

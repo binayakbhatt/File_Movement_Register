@@ -2,11 +2,8 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Pending Files') }}
+                {{ __('All Files') }}
             </h2>
-            <a href="{{ route('file.create') }}"
-                class="flex items-center justify-center text-red-700 background-transparent font-bold uppercase outline-none focus:outline-none ease-linear transition-all duration-150 hover:underline ">
-                {{ __('Receive File') }} </a>
         </div>
     </x-slot>
 
@@ -15,7 +12,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <x-message />
-                    <livewire:file-register-table />
+                    <livewire:all-file-register-table />
                 </div>
             </div>
         </div>

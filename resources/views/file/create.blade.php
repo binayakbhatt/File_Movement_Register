@@ -42,25 +42,6 @@
                                 </div>
 
                                 <div class="mb-5">
-                                    <label for="returned_to" class="mb-3 block text-base font-medium text-[#07074D]">
-                                        File Returned to
-                                    </label>
-                                    <input type="text" name="returned_to" id="returned_to"
-                                        placeholder="File Returned to"
-                                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                        value="{{ old('returned_to') }}" />
-                                </div>
-                                <div class="mb-5">
-                                    <label for="return_date" class="mb-3 block text-base font-medium text-[#07074D]">
-                                        File Return Date
-                                    </label>
-                                    <input type="date" name="return_date" id="return_date"
-                                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                        value="{{ old('return_date') }}" />
-                                </div>
-
-
-                                <div class="mb-5">
                                     <label for="message" class="mb-3 block text-base font-medium text-[#07074D]">
                                         Remarks
                                     </label>
